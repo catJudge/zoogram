@@ -20,4 +20,8 @@ public class LikeDAO {
     public void deleteLike(Like like) {
         sessionFactory.getCurrentSession().delete(like);
     }
+
+    public void getLikesByPostId(Integer integer){
+        sessionFactory.getCurrentSession().createQuery("from _like where post.id = :pid").setParameter("pid", integer);
+    }
 }

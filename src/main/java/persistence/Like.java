@@ -3,7 +3,7 @@ package persistence;
 import javax.persistence.*;
 import java.sql.Timestamp;
 
-@Entity
+@Entity(name = "_like")
 public class Like {
     @Id
     @Column(name = "id", nullable = false)

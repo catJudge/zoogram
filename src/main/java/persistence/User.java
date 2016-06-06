@@ -1,8 +1,10 @@
 package persistence;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 import java.util.Collection;
-
+@Component
 @Entity
 public class User {
     @Id
@@ -32,8 +34,11 @@ public class User {
     @Basic
     @Column(name = "website", nullable = true, length = 250)
     private String website;
+    @Basic
+    @Column(name = "image", nullable = true, length = 250)
+    private String image;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "follower",
             joinColumns = {
                     @JoinColumn(name = "follower_id", nullable = false, updatable = false)
@@ -44,11 +49,17 @@ public class User {
     )
     private Collection<User> followees;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "followees")
+    @ManyToMany(mappedBy = "followees")
     private Collection<User> followers;
 
     @OneToMany(mappedBy = "user")
     private Collection<Post> posts;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Like> likes;
+
+    @OneToMany(mappedBy = "user")
+    private Collection<Comment> comments;
 
     public int getId() {
         return id;
@@ -122,6 +133,7 @@ public class User {
         this.website = website;
     }
 
+
     public Collection<User> getFollowees() {
         return followees;
     }
@@ -144,5 +156,21 @@ public class User {
 
     public void setPosts(Collection<Post> posts) {
         this.posts = posts;
+    }
+
+    public Collection<Like> getLikes() {
+        return likes;
+    }
+
+    public void setLikes(Collection<Like> likes) {
+        this.likes = likes;
+    }
+
+    public Collection<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Collection<Comment> comments) {
+        this.comments = comments;
     }
 }

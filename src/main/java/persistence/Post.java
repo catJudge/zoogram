@@ -6,16 +6,26 @@ import java.util.Collection;
 
 @Entity
 public class Post {
+    @Id
+    @Column(name = "id", nullable = false)
     private int id;
+    @Basic
+    @Column(name = "description", nullable = true, length = 250)
     private String description;
+    @Basic
+    @Column(name = "image", nullable = false, length = 250)
     private String image;
+    @Basic
+    @Column(name = "created_date", nullable = false, length = 250)
     private Timestamp createdDate;
+    @OneToMany(mappedBy = "post")
     private Collection<Comment> comments;
+    @OneToMany(mappedBy = "post")
     private Collection<Like> likes;
+    @ManyToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     private User user;
 
-    @Id
-    @Column(name = "id", nullable = false, insertable = true, updatable = true)
     public int getId() {
         return id;
     }
@@ -24,8 +34,6 @@ public class Post {
         this.id = id;
     }
 
-    @Basic
-    @Column(name = "description", nullable = true, insertable = true, updatable = true, length = 250)
     public String getDescription() {
         return description;
     }
@@ -34,8 +42,6 @@ public class Post {
         this.description = description;
     }
 
-    @Basic
-    @Column(name = "image", nullable = false, insertable = true, updatable = true, length = 250)
     public String getImage() {
         return image;
     }
@@ -44,8 +50,6 @@ public class Post {
         this.image = image;
     }
 
-    @Basic
-    @Column(name = "created_date", nullable = false, insertable = true, updatable = true)
     public Timestamp getCreatedDate() {
         return createdDate;
     }
@@ -54,31 +58,6 @@ public class Post {
         this.createdDate = createdDate;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Post post = (Post) o;
-
-        if (id != post.id) return false;
-        if (description != null ? !description.equals(post.description) : post.description != null) return false;
-        if (image != null ? !image.equals(post.image) : post.image != null) return false;
-        if (createdDate != null ? !createdDate.equals(post.createdDate) : post.createdDate != null) return false;
-
-        return true;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id;
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        result = 31 * result + (image != null ? image.hashCode() : 0);
-        result = 31 * result + (createdDate != null ? createdDate.hashCode() : 0);
-        return result;
-    }
-
-    @OneToMany(mappedBy = "post")
     public Collection<Comment> getComments() {
         return comments;
     }
@@ -87,7 +66,6 @@ public class Post {
         this.comments = comments;
     }
 
-    @OneToMany(mappedBy = "post")
     public Collection<Like> getLikes() {
         return likes;
     }
@@ -96,8 +74,6 @@ public class Post {
         this.likes = likes;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
     public User getUser() {
         return user;
     }
