@@ -20,7 +20,7 @@
         <div class="panel panel-default" style=" margin-top: 10pt">
             <div class="panel-body" style=" margin: 20pt;">
                 <h1 style="text-align: center">Zoogram</h1>
-                <form action="<c:url value="/signup"/>" method="post">
+                <form action="${pageContext.request.contextPath}/signup/" method="post">
                     <h3  style="text-align: center">
                         Sign up to see photos from your friends.
                     </h3>
@@ -45,7 +45,7 @@
             <div class="panel-body">
                 <div style=" text-align: center">
                     Have an account?
-                    <a href="${pageContext.request.contextPath}/login" style="color: #3897f0; text-decoration: none">Log in</a>
+                    <a href="${pageContext.request.contextPath}/login/" style="color: #3897f0; text-decoration: none">Log in</a>
                 </div>
             </div>
         </div>

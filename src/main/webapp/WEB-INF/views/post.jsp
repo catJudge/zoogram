@@ -50,7 +50,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<c:url value="${pageContext.request.contextPath}/"/>" style="font-size: 20pt"><strong>Zoogram</strong></a>
+                <li><a href="${pageContext.request.contextPath}/" style="font-size: 20pt"><strong>Zoogram</strong></a>
                 </li>
             </ul>
             <form class="navbar-form navbar-left" role="search" style="margin-left: 100pt">
@@ -59,19 +59,19 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="<c:url value="${pageContext.request.contextPath}/logout"/>" style="font-size: 20pt">
+                <li><a href="${pageContext.request.contextPath}/logout/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-log-out"
                           aria-hidden="true"
                           title="profile"></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/profile/edit/${user.username}" style="font-size: 20pt">
+                <li><a href="${pageContext.request.contextPath}/profile/edit/${user.username}/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-edit"
                           aria-hidden="true"
                           title="edit"></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/profile/${user.username}" style="font-size: 20pt">
+                <li><a href="${pageContext.request.contextPath}/profile/${user.username}/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-user"
                           aria-hidden="true"
                           title="profile"></span></a></li>
@@ -122,7 +122,7 @@
                 </table>
             </div>
             <div style="margin-top: 10pt">
-                <form action=" <c:url value="/post/${post.id}/add/comment/"/>" method="post">
+                <form action="${pageContext.request.contextPath}/post/${post.id}/add/comment/" method="post">
                     <div class="form-group" style="height: 20pt">
                         <input type="text" class="form-control" name="inputComment" placeholder="Comment">
                     </div>
@@ -130,11 +130,9 @@
             </div>
         </div>
     </div>
+    <div class="col-md-2">
 
-</div>
-<div class="col-md-2">
-
-</div>
+    </div>
 </div>
 
 </body>

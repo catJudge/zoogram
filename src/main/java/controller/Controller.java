@@ -27,17 +27,17 @@ public class Controller {
     @Autowired
     User currentUser;
 
-    @RequestMapping(value = "/signup", method = RequestMethod.GET)
+    @RequestMapping(value = "/signup/", method = RequestMethod.GET)
     public ModelAndView signGet(ModelAndView modelAndView) {
         return new ModelAndView("signup");
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login/", method = RequestMethod.GET)
     public ModelAndView loginGet() {
         return new ModelAndView("login");
     }
 
-    @RequestMapping(value = "/signup", method = RequestMethod.POST)
+    @RequestMapping(value = "/signup/", method = RequestMethod.POST)
     public ModelAndView signPost(
             @ModelAttribute("inputEmail") String inputEmail,
             @ModelAttribute("inputFullname") String inputFullname,
@@ -50,7 +50,7 @@ public class Controller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/login/", method = RequestMethod.POST)
     public ModelAndView loginPost(
             @ModelAttribute("inputUsername") String inputUsername,
             @ModelAttribute("inputPassword") String inputPassword) {
@@ -60,7 +60,7 @@ public class Controller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/profile/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/{username}/", method = RequestMethod.GET)
     public ModelAndView profile(@PathVariable("username") String username) {
         ModelAndView modelAndView = new ModelAndView("profile");
         final User userByUsername = userService.getUserByUsername(username);
@@ -80,13 +80,13 @@ public class Controller {
         return modelAndView;
     }
 
-    @RequestMapping(value = "/profile/edit/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/profile/edit/{username}/", method = RequestMethod.GET)
     public ModelAndView editGet(@PathVariable("username") String username) {
         ModelAndView modelAndView = new ModelAndView("edit");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/post/{post}", method = RequestMethod.GET)
+    @RequestMapping(value = "/post/{post}/", method = RequestMethod.GET)
     public ModelAndView post(@PathVariable("post") Integer post) {
         ModelAndView modelAndView = new ModelAndView("post");
         final Post postById = postService.getPostById(post);

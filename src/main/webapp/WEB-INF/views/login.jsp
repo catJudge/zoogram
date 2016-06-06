@@ -20,7 +20,7 @@
         <div class="panel panel-default" style=" margin-top: 60pt">
             <div class="panel-body" style=" margin: 20pt;">
                 <h1 style="text-align: center">Zoogram</h1>
-                <form action="<c:url value="/login"/>" method="post">
+                <form action="${pageContext.request.contextPath}/login/" method="post">
                     <div class="form-group">
                         <input type="text" class="form-control" name="inputUsername" placeholder="Username">
                     </div>
@@ -36,7 +36,7 @@
             <div class="panel-body">
                 <div style=" text-align: center">
                     Don't have an account?
-                    <a href="${pageContext.request.contextPath}/signup" style="color: #3897f0; text-decoration: none">
+                    <a href="${pageContext.request.contextPath}/signup/" style="color: #3897f0; text-decoration: none">
                         Sign up</a>
                 </div>
             </div>

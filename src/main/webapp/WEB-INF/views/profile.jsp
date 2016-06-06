@@ -16,7 +16,7 @@
     <div class="container-fluid">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li><a href="<c:url value="${pageContext.request.contextPath}/"/>" style="font-size: 20pt"><strong>Zoogram</strong></a>
+                <li><a href="${pageContext.request.contextPath}/" style="font-size: 20pt"><strong>Zoogram</strong></a>
                 </li>
             </ul>
             <form class="navbar-form navbar-left" role="search" style="margin-left: 100pt">
@@ -25,7 +25,7 @@
                 </div>
             </form>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/logout" style="font-size: 20pt">
+                <li><a href="/logout/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-log-out"
                           aria-hidden="true"
                           title="profile"></span></a></li>
@@ -75,7 +75,7 @@
                 <c:if test="${user.posts.size() != 0}">
                     <c:forEach var="post" items="${user.posts}">
                         <div class="col-md-4">
-                            <a href="<c:url value="/post/${post.id}"/>" class="thumbnail">
+                            <a href="${pageContext.request.contextPath}/post/${post.id}/" class="thumbnail">
                                 <img
                                         src="/static/images/back.jpg"
                                         data-holder-rendered="true"
