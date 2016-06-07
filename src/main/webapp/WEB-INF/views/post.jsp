@@ -46,7 +46,7 @@
 </head>
 <body style="background: #f8f8f8">
 <nav class="navbar navbar-default"
-     style="background: white; padding: 15pt 20%">
+     style="background: white; padding: 15pt 18%">
     <div class="container-fluid">
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
