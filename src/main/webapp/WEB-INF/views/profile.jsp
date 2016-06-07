@@ -31,13 +31,13 @@
                           title="profile"></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/profile/edit/${user.username}" style="font-size: 20pt">
+                <li><a href="/profile/edit/${user.username}/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-edit"
                           aria-hidden="true"
                           title="edit"></span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/profile/${user.username}" style="font-size: 20pt">
+                <li><a href="/profile/${user.username}/" style="font-size: 20pt">
                     <span class="glyphicon glyphicon-user"
                           aria-hidden="true"
                           title="profile"></span></a></li>

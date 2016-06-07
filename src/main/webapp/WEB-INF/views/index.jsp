@@ -33,6 +33,35 @@
             text-decoration: none;
         }
     </style>
+    <script>
+        $(function () {
+
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function () {
+                var input = $(this),
+                        numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                        label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready(function () {
+                $(':file').on('fileselect', function (event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                            log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if (input.length) {
+                        input.val(log);
+                    } else {
+                        if (log) alert(log);
+                    }
+
+                });
+            });
+
+        });
+    </script>
 </head>
 <body style="background: #f8f8f8">
 <nav class="navbar navbar-default"
@@ -70,69 +99,82 @@
     </div>
 </nav>
 
-<div class="container">
-    <div class="col-md-2">
+<div class="contetnt container">
+    <div class="row">
+        <div class="col-md-2">
 
-    </div>
-    <div class="col-md-8">
-        <div class="well">
-            <div style="margin-top: 10pt">
-                <form action=" <c:url value="/add/post/"/>" method="post">
-                    <div class="form-group" style="height: 20pt">
-                        <input type="text" class="form-control" name="inputDescription" placeholder="Description">
-                    </div>
-                </form>
-            </div>
         </div>
-
-        <c:forEach var="post" items="${posts}">
+        <div class="col-md-8">
             <div class="well">
-                <table class="text">
-                    <tr>
-                        <td></td>
-                        <td class="rightcol"
-                            style="font-size: 10pt">${post.createdDate.toGMTString().replace("GMT", "")}</td>
-                    </tr>
-                </table>
-                <div class="thumbnail">
-                    <img
-                            src="/static/images/back.jpg"
-                            data-holder-rendered="true"
-                            style="height: 100%; width: 100%; display: block;">
-                </div>
-                <div>
-                    <div style="">
-                    <span style="font-size: 20pt;" class="glyphicon glyphicon-heart" aria-hidden="true"
-                          title="profile"></span>
-
-                        <strong style="font-size: 14pt; ">${post.likes.size()}</strong>
-                    </div>
-                    <p><strong>${post.user.username}</strong>
-                            ${post.description}
-                    </p>
-                    <table class="text">
-                        <c:forEach var="comment" items="${post.comments}">
-                            <tr style="">
-                                <td><strong>${comment.user.username}</strong>
-                                        ${comment.text}</td>
-                                <td class="rightcol"
-                                    style="font-size: 10pt">${comment.createdDate.toGMTString().replace("GMT", "")}</td>
-                            </tr>
-                        </c:forEach>
-                    </table>
-                </div>
                 <div style="margin-top: 10pt">
-                    <form action=" <c:url value="/post/${post.id}/add/comment/"/>" method="post">
+                    <form action=" <c:url value="/add/post/"/>" method="post">
                         <div class="form-group" style="height: 20pt">
-                            <input type="text" class="form-control" name="inputComment" placeholder="Comment">
+                            <input type="text" class="form-control" name="inputDescription"
+                                   placeholder="What's a new?">
+                        </div>
+                        <div class="input-group">
+                            <label class="input-group-btn">
+                                <span class="btn btn-primary" style="background: white; border-color:#ccc; color: gray">
+                                    Browse&hellip; <input type="file" name="inputFile" style="display: none;">
+                                </span>
+                            </label>
+                            <input type="text" class="form-control" style="background: white; text-decoration: none; width: 80%"
+                                   readonly >
+                            <input type="submit" class="btn btn-default" value="Post" style="width: 20%">
                         </div>
                     </form>
                 </div>
             </div>
-        </c:forEach>
-    </div>
-    <div class="col-md-2">
 
+            <c:forEach var="post" items="${posts}">
+                <div class="well">
+                    <table class="text">
+                        <tr>
+                            <td></td>
+                            <td class="rightcol"
+                                style="font-size: 10pt">${post.createdDate.toGMTString().replace("GMT", "")}</td>
+                        </tr>
+                    </table>
+                    <div class="thumbnail">
+                        <img
+                                src="/static/images/back.jpg"
+                                data-holder-rendered="true"
+                                style="height: 100%; width: 100%; display: block;">
+                    </div>
+                    <div>
+                        <div style="">
+                    <span style="font-size: 20pt;" class="glyphicon glyphicon-heart" aria-hidden="true"
+                          title="profile"></span>
+
+                            <strong style="font-size: 14pt; ">${post.likes.size()}</strong>
+                        </div>
+                        <p><strong>${post.user.username}</strong>
+                                ${post.description}
+                        </p>
+                        <table class="text">
+                            <c:forEach var="comment" items="${post.comments}">
+                                <tr style="">
+                                    <td><strong>${comment.user.username}</strong>
+                                            ${comment.text}</td>
+                                    <td class="rightcol"
+                                        style="font-size: 10pt">${comment.createdDate.toGMTString().replace("GMT", "")}</td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                    <div style="margin-top: 10pt">
+                        <form action=" <c:url value="/post/${post.id}/add/comment/"/>" method="post">
+                            <div class="form-group" style="height: 20pt">
+                                <input type="text" class="form-control" name="inputComment" placeholder="Comment">
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+        <div class="col-md-2">
+
+        </div>
     </div>
 </div>
 
